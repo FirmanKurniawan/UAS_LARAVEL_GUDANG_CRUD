@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Gudang;
 use App\Barang;
+use App\Session;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -25,7 +27,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $gudang = Gudang::all();
-        return view('home')->with('gudangs', $gudang);
+        $gudangs = Gudang::all();
+        $gudangs1 = Gudang::count();
+
+        $barangs = Barang::all();
+        $barangs1 = Barang::count();
+        return view('home', compact('gudangs', 'gudangs1', 'barangs', 'barangs1', 'data'));
     }
 }
